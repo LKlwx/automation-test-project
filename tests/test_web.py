@@ -10,10 +10,11 @@
 import os
 import time
 from selenium import webdriver
-
-# 导入路径修改
+from selenium.webdriver.common.by import By
+from selenium.common.exceptions import NoSuchElementException
 from pages.LoginPage import LoginPage
 from core.TestDataReader import TestDataReader
+
 
 
 class BusinessFlowTest:
@@ -51,7 +52,7 @@ class BusinessFlowTest:
                     user["expected_status"] = "200"  # 默认都预期成功
                 return users
             else:
-                # 如果已经是数组格式，直接返回
+                # 格式正确，直接返回
                 return data
         else:
             raise Exception(f"不支持的文件类型{file_ext}")
@@ -104,28 +105,46 @@ class BusinessFlowTest:
                 print(f"打开登录页面:{html_path}")
                 time.sleep(2)
 
+                # 记录原始文件
+                original_url = self.driver.current_url
+
                 # 使用LoginPage类进行登录
                 login_page.login(username, password)
                 time.sleep(3)
 
                 # 判断登录结果
-                time.sleep(2)  # 等待结果出现
+                # 直接检查result元素的文本
+                try:
+                    result_div = self.driver.find_element(By.ID, "result")
+                    result_text = result_div.text
 
-                # 检查页面内容
-                page_source = self.driver.page_source
-
-                if "登录成功" in page_source:
-                    result_msg = f"用例{i}: {username} - 登录成功"
-                elif "用户名或密码错误" in page_source:
-                    result_msg = f"用例{i}: {username} - 登录失败"
-                else:
-                    # 如果上面的判断都不匹配，检查URL
-                    current_url = self.driver.current_url
-                    if "login" in current_url:
-                        result_msg = f"用例{i}: {username} - 登录失败（仍在登录页）"
+                    if "登录成功" in result_text:
+                        result_msg = f"用例{i}: {username} - 登录成功"
+                    elif "用户名或密码错误" in result_text:
+                        result_msg = f"用例{i}: {username} - 登录失败"
                     else:
-                        result_msg = f"用例{i}: {username} - 登录成功（页面跳转）"
+                        # 如果上面的判断都不匹配，检查URL
+                        current_url = self.driver.current_url
+                        if current_url != original_url:
+                            result_msg = f"用例{i}: {username} - 登录成功,页面跳转"
+                        else:
+                            result_msg = f"用例{i}: {username} - 登录失败,未知错误"
 
+                except NoSuchElementException as e:
+                    print(f"未找到result元素: {e}")
+                    # 如果找不到result元素，检查URL是否变化
+                    current_url = self.driver.current_url
+                    if current_url != original_url:
+                        result_msg = f"用例{i}: {username} - 登录成功（触发跳转）"
+                    else:
+                        # 兜底：检查页面源码
+                        page_source = self.driver.page_source
+                        if "登录成功" in page_source:
+                            result_msg = f"用例{i}: {username} - 登录成功"
+                        elif "用户名或密码错误" in page_source:
+                            result_msg = f"用例{i}: {username} - 登录失败"
+                        else:
+                            result_msg = f"用例{i}: {username} - 无法判断结果"
                 print(result_msg)
                 results.append(result_msg)
 
@@ -148,12 +167,12 @@ class BusinessFlowTest:
                 except:
                     pass
 
-            # 显示最终结果
-            print("\n" + "=" * 60)
-            print("测试结果汇总:")
-            print("=" * 60)
-            for result in results:
-                print(result)
+        # 显示最终结果
+        print("\n" + "=" * 60)
+        print("测试结果汇总:")
+        print("=" * 60)
+        for result in results:
+            print(result)
 
 
 if __name__ == "__main__":
