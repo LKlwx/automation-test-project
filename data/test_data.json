@@ -1,0 +1,41 @@
+{
+  "users": [
+    {
+      "username": "user_1",
+      "password": "Test@123",
+      "email": "user_1@test.com"
+    },
+    {
+      "username": "user_2",
+      "password": "Test@123",
+      "email": "user_2@test.com"
+    },
+    {
+      "username": "user_3",
+      "password": "Test@123",
+      "email": "user_3@test.com"
+    }
+  ],
+  "test_cases": [
+    {
+      "case_id": 1,
+      "url": "/api/login",
+      "method": "GET",
+      "headers": null
+    },
+    {
+      "case_id": 2,
+      "url": "/api/user",
+      "method": "POST",
+      "headers": {
+        "Content-Type": "application/json"
+      }
+    },
+    {
+      "case_id": 3,
+      "url": "/api/data",
+      "method": "GET",
+      "headers": null
+    }
+  ]
+}
