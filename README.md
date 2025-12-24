@@ -4,39 +4,40 @@ Web自动化测试还未完成，后续会继续完善
 
 # 项目结构
 automation-test-project/
-├── assets/                  # 静态资源/截图目录
-│   └── allure/              # Allure报告截图子目录
-│       ├── allure_overview.png
-│       ├── allure_suites.png
-│       ├── allure_graphs.png
-│       └── allure_behaviors.png
-├── config/                  # 配置目录
-│   └── config.json          # 接口基础配置
-├── core/                    # 核心工具包
-│   ├── __init__.py
-│   ├── api_client.py        # HTTP请求封装（含日志、会话保持）
-│   ├── config_manager.py    # 配置读取与管理
-│   └── data_reader.py       # 测试数据解析工具
-├── data/                    # 测试数据目录
-│   ├── test_data.json       # JSON格式测试数据
-│   └── test_data.xlsx       # Excel格式测试数据
-├── logs/                    # 日志目录
-│   └── apilog               # 接口请求日志
-├── pages/                   
-│   └── login_page.py        # 未作修改
-├── reports/                 # 测试报告（自动生成）
-│   └── allure-results       # Allure原始报告数据
-├── tests/                   # 测试用例目录
-│   ├── __init__.py
-│   ├── conftest.py          # Pytest夹具配置
-│   ├── test_login_api.py    # 登录接口测试用例
-│   ├── test_web.py          # 未作修改
-│   └── test_login.html      # 未作修改
-├── .gitignore               # Git忽略规则
-├── pytest.ini               # Pytest配置文件
-├── requirements.txt         # 项目依赖清单
-├── run_tests.py             # 测试执行入口
-└── README.md                # 项目说明
+├── assets/ # 静态资源/截图目录
+│ └── allure/ # Allure报告截图子目录
+│ ├── allure_overview.png
+│ ├── allure_suites.png
+│ ├── allure_graphs.png
+│ └── allure_behaviors.png
+├── config/ # 配置目录
+│ └── config.json # 接口基础配置
+├── core/ # 核心工具包
+│ ├── `__init__`.py
+│ ├── api_client.py # HTTP请求封装（含日志、会话保持）
+│ ├── config_manager.py # 配置读取与管理
+│ └── data_reader.py # 测试数据解析工具
+├── data/ # 测试数据目录
+│ ├── test_data.json # JSON格式测试数据
+│ └── test_data.xlsx # Excel格式测试数据
+├── logs/ # 日志目录
+│ └── apilog # 接口请求日志
+├── pages/
+│ └── login_page.py # 登录页面对象
+├── reports/ # 测试报告（自动生成）
+│ └── allure-results # Allure原始报告数据
+├── tests/ # 测试用例目录
+│ ├── `__init__`.py
+│ ├── conftest.py # Pytest夹具配置
+│ ├── test_login_api.py # 登录接口测试用例
+│ ├── test_web.py # Web测试用例
+│ └── test_login.html # 本地测试页面
+├── `__init__`.py
+├── .gitignore # Git忽略规则
+├── pytest.ini # Pytest配置文件
+├── requirements.txt # 项目依赖清单
+├── run_tests.py # 测试执行入口
+└── README.md # 项目说明
 
 # 项目更新内容
 ## 1. 文件命名规范
@@ -62,9 +63,9 @@ automation-test-project/
 ## 4. 配置与数据优化
 - 测试数据优化：统一测试数据文件命名，从仅支持登录数据扩展为支持多模块、多场景的测试数据驱动
 - 标准化配置文件：
-    1. `__init__.py`：标识python包;控制包的导入
-    2. pytest.ini：配置 Pytest 用例扫描规则、自定义login标记，消除运行警告
-    3. requirements.txt：锁定 pytest、allure-pytest、requests 等依赖版本
+    - 1. `__init__.py`：标识python包;控制包的导入
+    - 2. pytest.ini：配置 Pytest 用例扫描规则、自定义login标记，消除运行警告
+    - 3. requirements.txt：锁定 pytest、allure-pytest、requests 等依赖版本
 
 # 测试结果
 - 总测试用例数：12个
