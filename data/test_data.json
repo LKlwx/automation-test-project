@@ -3,17 +3,37 @@
     {
       "username": "user_1",
       "password": "Test@123",
-      "email": "user_1@test.com"
+      "email": "user_1@test.com",
+      "expected_status": 200,
+      "description": "普通用户1正常登录"
     },
     {
       "username": "user_2",
       "password": "Test@123",
-      "email": "user_2@test.com"
+      "email": "user_2@test.com",
+      "expected_status": 200,
+      "description": "普通用户2正常登录"
     },
     {
       "username": "user_3",
       "password": "Test@123",
-      "email": "user_3@test.com"
+      "email": "user_3@test.com",
+      "expected_status": 200,
+      "description": "普通用户3正常登录"
+    },
+    {
+      "username": "admin",
+      "password": "wrongpass",
+      "email": "admin@test.com",
+      "expected_status": 401,
+      "description": "管理员密码错误登录失败"
+    },
+    {
+      "username": "",
+      "password": "anypass",
+      "email": "",
+      "expected_status": 400,
+      "description": "用户名为空登录失败"
     }
   ],
   "test_cases": [

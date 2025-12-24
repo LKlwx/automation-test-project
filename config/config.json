@@ -2,7 +2,6 @@
     "base_url": "https://httpbin.org",
     "timeout": 30,
     "users": [
-        "admin",
-        "guest"
+        "admin"
     ]
 }

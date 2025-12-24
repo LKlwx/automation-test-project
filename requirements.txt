@@ -1,3 +1,23 @@
-requests
-selenium
-openpyxl
+# 核心：Pytest测试框架
+pytest==9.0.2
+pytest-lazy-fixture==0.6.3
+
+# 测试报告：Allure
+allure-pytest==2.15.2
+allure-python-commons==2.15.2
+
+# 接口请求：HTTP请求库
+requests==2.32.5
+urllib3==2.6.2
+certifi==2025.11.12
+charset-normalizer==3.4.4
+idna==3.11
+
+# Excel读取：解析Excel文件
+openpyxl==3.1.5
+et_xmlfile==2.0.0
+
+
+# selenium==4.39.0
+# trio==0.32.0
+# trio-websocket==0.12.2

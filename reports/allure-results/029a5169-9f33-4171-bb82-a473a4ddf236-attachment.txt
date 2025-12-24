@@ -1,0 +1,2 @@
+[32mINFO    [0m core.api_client:api_client.py:45 模拟登录请求:user_1
+[32mINFO    [0m core.api_client:api_client.py:48 登录响应状态码:200

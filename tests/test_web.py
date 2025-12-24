@@ -13,7 +13,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
 from pages.LoginPage import LoginPage
-from core.TestDataReader import TestDataReader
+from core.data_reader import TestDataReader
 
 
 
